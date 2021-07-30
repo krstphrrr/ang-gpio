@@ -1,0 +1,15 @@
+.cardstyle{
+  background-color: #99e6e6;
+}
+
+::ng-deep  .mat-slide-toggle.mat-checked.redTog:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: red;  /*replace with your color*/
+}
+
+::ng-deep  .mat-slide-toggle.mat-checked.yellowTog:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: yellow;  /*replace with your color*/
+}
+
+::ng-deep  .mat-slide-toggle.mat-checked.greenTog:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: green;  /*replace with your color*/
+}
