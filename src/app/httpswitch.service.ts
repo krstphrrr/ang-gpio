@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,7 +16,10 @@ export class HttpswitchService {
 
   receiveToggle(col:string){
     // console.log(`${this.url}/${col}`)
-    this.http.get(`${this.url}/${col}`)
+    this.http.get(`${this.url}/${col}`,{responseType: 'text'})
+    .toPromise()
+    .then(x=>console.log(x))
+    .catch(err=>console.log(err,"err"))
   }
 
   touchBackend(){
@@ -24,3 +28,5 @@ export class HttpswitchService {
 
 
 }
+
+
