@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
 
 export class HttpswitchService {
   private color = new Subject()
-  private url = "http://localhost:3000"
+  private url = "http://192.168.1.6:3000"
 
   public pubColor = this.color.asObservable()
   constructor(private http: HttpClient) { }
