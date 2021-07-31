@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { HttpswitchService } from '../httpswitch.service';
 
 @Component({
@@ -8,11 +9,35 @@ import { HttpswitchService } from '../httpswitch.service';
 })
 export class CardComponent implements OnInit {
 
+  public pinStat!:Subscription
+  redStat!:boolean
+  yellowStat!:boolean 
+  greenStat!:boolean
+
   constructor(
     private http:HttpswitchService
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit(): void {
+    // function to check pin status on backend
+    this.http.getPinStatus()
+    this.pinStat = this.http.pinStatus$.subscribe(stat=>{
+      for(const [key,value] of Object.entries(stat)){
+        switch(key){
+          case "red":
+            this.redStat = stat[key]
+            break;
+          case "yellow":
+            this.yellowStat = stat[key]
+            break;
+          case "green":
+            this.greenStat = stat[key]
+        }
+      }
+    })
+
   }
   toggleRed(){
     this.http.receiveToggle('red')

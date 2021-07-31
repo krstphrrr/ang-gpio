@@ -3,19 +3,19 @@
   <br>
   <mat-card class="cardstyle">
     <div fxLayout="column">
-      <mat-slide-toggle class="redTog" (change)="toggleRed()">
+      <mat-slide-toggle class="redTog" (change)="toggleRed()" [checked]="redStat">
         <span style="color:black">
         <mat-icon>sentiment_very_dissatisfied</mat-icon>
         </span>
       </mat-slide-toggle>
-      <mat-slide-toggle class="yellowTog" (change)="toggleYellow()">
+      <mat-slide-toggle class="yellowTog" (change)="toggleYellow()" [checked]="yellowStat">
         <span style="color:black">
         <mat-icon>
           sentiment_satisfied
         </mat-icon>
         </span>
       </mat-slide-toggle>
-      <mat-slide-toggle class="greenTog" (change)="toggleGreen()"> 
+      <mat-slide-toggle class="greenTog" (change)="toggleGreen()" [checked]="greenStat"> 
         <span style="color:black">
         <mat-icon>
           sentiment_very_satisfied

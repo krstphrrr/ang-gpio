@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 
 @Injectable({
@@ -10,16 +10,34 @@ import { Subject } from 'rxjs';
 export class HttpswitchService {
   private color = new Subject()
   private url = "https://api.samimaldita.tk"
+  dev = "http://localhost:3000"
+  private pinStatus = new BehaviorSubject({})
+
+  pinStatus$:Observable<any>= this.pinStatus.asObservable()
+  actualPinObj!:{}
 
   public pubColor = this.color.asObservable()
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.pinStatus$.subscribe(pins=>{
+      this.actualPinObj = pins
+      console.log(pins)
+    })
+   }
+
 
   receiveToggle(col:string){
-    // console.log(`${this.url}/${col}`)
-    this.http.get(`${this.url}/${col}`,{responseType: 'text'})
-    .toPromise()
-    .then(x=>console.log(x))
-    .catch(err=>console.log(err,"err"))
+    if(this.actualPinObj){
+      this.http.post<any>(`${this.url}/${col}`,this.actualPinObj).subscribe(data=>{
+        console.log(data)
+      })
+    }
+    
+  }
+
+  getPinStatus(){
+    this.http.get(`${this.url}/pinstatus`).subscribe(res =>{
+      this.pinStatus.next(res)
+    })
   }
 
   touchBackend(){
