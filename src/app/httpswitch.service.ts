@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 
 @Injectable({
@@ -25,9 +26,11 @@ export class HttpswitchService {
    }
 
 
-  receiveToggle(col:string){
+  receiveToggle(col:string, event:MatSlideToggleChange){
+    console.log(col, event.checked)
+    let sw = event.checked===true?"1":"0"
     if(this.actualPinObj){
-      this.http.post<any>(`${this.url}/${col}`,this.actualPinObj).subscribe(data=>{
+      this.http.get<any>(`${this.url}/${col}/${sw}`).subscribe(data=>{
         console.log(data)
       })
     }

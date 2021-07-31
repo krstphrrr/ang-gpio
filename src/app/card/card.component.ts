@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { Subscription } from 'rxjs';
 import { HttpswitchService } from '../httpswitch.service';
 
@@ -39,14 +40,14 @@ export class CardComponent implements OnInit {
     })
 
   }
-  toggleRed(){
-    this.http.receiveToggle('red')
+  toggleRed(event:MatSlideToggleChange){
+    this.http.receiveToggle('red',event)
   }
-  toggleYellow(){
-    this.http.receiveToggle('yellow')
+  toggleYellow(event:MatSlideToggleChange){
+    this.http.receiveToggle('yellow', event)
   }
-  toggleGreen(){
-    this.http.receiveToggle('green')
+  toggleGreen(event:MatSlideToggleChange){
+    this.http.receiveToggle('green', event)
   }
 
 }
