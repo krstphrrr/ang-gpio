@@ -1,6 +1,16 @@
+
+
 # AngGpio
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.4.
+
+dev setup:
+1. build in dev machine, not inside raspberry
+2. delete old dists  = rm -r /usr/shared/nginx/html/*
+3. send the dist folder to nginx public directory = cp -a /home/user/project/dist/project/. /usr/shared/nginx/html
+4. make sure there's an nginx .conf file serving that directory 
+5. remember certbot magic for ssl on the dns of your preference
+ 
 
 ## Development server
 
